@@ -73,6 +73,13 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20240303</version> <!-- You can use the latest stable version -->
+		</dependency>
+
+
 		<!-- Spring Boot Testing Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

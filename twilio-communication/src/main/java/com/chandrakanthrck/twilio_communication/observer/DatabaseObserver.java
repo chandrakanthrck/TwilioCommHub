@@ -2,6 +2,7 @@ package com.chandrakanthrck.twilio_communication.observer;
 
 import com.chandrakanthrck.twilio_communication.model.MessageLog;
 import com.chandrakanthrck.twilio_communication.repository.MessageLogRepository;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ public class DatabaseObserver implements MessageObserver {
         this.messageLogRepository = messageLogRepository;
     }
 
+    @Async
     @Override
     public void update(String message, String status) {
         MessageLog log = MessageLog.builder()

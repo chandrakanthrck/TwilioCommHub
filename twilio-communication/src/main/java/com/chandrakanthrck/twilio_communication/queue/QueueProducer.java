@@ -12,8 +12,9 @@ public class QueueProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendToQueue(String message) {
+    public void sendToQueue(String to, String messageContent) {
+        String message = String.format("{\"to\": \"%s\", \"content\": \"%s\"}", to, messageContent);
         rabbitTemplate.convertAndSend("smsQueue", message);
     }
-}
 
+}
