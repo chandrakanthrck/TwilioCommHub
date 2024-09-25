@@ -1,11 +1,19 @@
 package com.chandrakanthrck.twilio_communication.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "message_logs")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MessageLog {
 
     @Id
@@ -27,75 +35,12 @@ public class MessageLog {
     @Column(nullable = false)
     private LocalDateTime sentAt;
 
-    // No-argument constructor
-    public MessageLog() {
-    }
-
-    // All-argument constructor
-    public MessageLog(Long id, String toPhoneNumber, String fromPhoneNumber, String messageContent, String status, LocalDateTime sentAt) {
-        this.id = id;
-        this.toPhoneNumber = toPhoneNumber;
-        this.fromPhoneNumber = fromPhoneNumber;
-        this.messageContent = messageContent;
-        this.status = status;
-        this.sentAt = sentAt;
-    }
-
-    // Constructor without the 'id' field
+    // Custom constructor (excluding the ID field)
     public MessageLog(String toPhoneNumber, String fromPhoneNumber, String messageContent, String status, LocalDateTime sentAt) {
         this.toPhoneNumber = toPhoneNumber;
         this.fromPhoneNumber = fromPhoneNumber;
         this.messageContent = messageContent;
         this.status = status;
-        this.sentAt = sentAt;
-    }
-
-    // Getters and setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getToPhoneNumber() {
-        return toPhoneNumber;
-    }
-
-    public void setToPhoneNumber(String toPhoneNumber) {
-        this.toPhoneNumber = toPhoneNumber;
-    }
-
-    public String getFromPhoneNumber() {
-        return fromPhoneNumber;
-    }
-
-    public void setFromPhoneNumber(String fromPhoneNumber) {
-        this.fromPhoneNumber = fromPhoneNumber;
-    }
-
-    public String getMessageContent() {
-        return messageContent;
-    }
-
-    public void setMessageContent(String messageContent) {
-        this.messageContent = messageContent;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getSentAt() {
-        return sentAt;
-    }
-
-    public void setSentAt(LocalDateTime sentAt) {
         this.sentAt = sentAt;
     }
 }

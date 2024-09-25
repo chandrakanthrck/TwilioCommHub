@@ -1,10 +1,12 @@
 package com.chandrakanthrck.twilio_communication.config;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import com.twilio.Twilio;
 
 @Configuration
+@Getter // Lombok annotation to generate getters for all fields
 public class TwilioConfig {
 
     @Value("${twilio.account.sid}")
@@ -16,13 +18,8 @@ public class TwilioConfig {
     @Value("${twilio.phone.number}")
     private String phoneNumber;
 
-    // This method initializes Twilio, but does not need to be a Spring bean
+    // Initializes Twilio with SID and Auth Token
     public void initializeTwilio() {
         Twilio.init(accountSid, authToken);
-    }
-
-    // Getter for phone number, used in the Twilio service
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 }
