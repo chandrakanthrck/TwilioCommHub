@@ -1,10 +1,7 @@
 package com.chandrakanthrck.twilio_communication.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -35,7 +32,13 @@ public class MessageLog {
     @Column(nullable = false)
     private LocalDateTime sentAt;
 
-    // Custom constructor (excluding the ID field)
+    @Column(nullable = true)
+    private String messageSid;
+
+    @Column(nullable = true)
+    private LocalDateTime scheduledTime;
+
+    // Constructor without ID
     public MessageLog(String toPhoneNumber, String fromPhoneNumber, String messageContent, String status, LocalDateTime sentAt) {
         this.toPhoneNumber = toPhoneNumber;
         this.fromPhoneNumber = fromPhoneNumber;
