@@ -1,0 +1,11 @@
+groups:
+  - name: sms_alerts
+    rules:
+      - alert: HighSmsFailureRate
+        expr: rate(sms_failed_count[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High SMS failure rate detected"
+          description: "The failure rate of SMS has exceeded 5% over the last 5 minutes."
