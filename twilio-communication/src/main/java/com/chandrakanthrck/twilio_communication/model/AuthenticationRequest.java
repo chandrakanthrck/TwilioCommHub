@@ -1,8 +1,15 @@
 package com.chandrakanthrck.twilio_communication.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Model representing the authentication request containing username and password.")
 public class AuthenticationRequest {
 
+    @ApiModelProperty(value = "Username of the user", required = true)
     private String username;
+
+    @ApiModelProperty(value = "Password of the user", required = true)
     private String password;
 
     // Default constructor for JSON Parsing

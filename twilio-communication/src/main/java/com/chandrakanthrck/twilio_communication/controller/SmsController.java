@@ -5,6 +5,10 @@ import com.chandrakanthrck.twilio_communication.queue.QueueProducer;
 import com.chandrakanthrck.twilio_communication.repository.MessageLogRepository;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/sms")
 @Validated  // Enable validation
+@Api(value = "SMS Management", tags = {"SMS"})
 public class SmsController {
 
     private static final Logger logger = LoggerFactory.getLogger(SmsController.class);
@@ -31,6 +36,12 @@ public class SmsController {
     }
 
     @PostMapping("/send/bulk")
+    @ApiOperation(value = "Send Bulk SMS", response = String.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Bulk messages enqueued/scheduled successfully"),
+            @ApiResponse(code = 400, message = "Invalid input"),
+            @ApiResponse(code = 500, message = "Error occurred while sending messages")
+    })
     public ResponseEntity<String> sendBulkSms(
             @RequestParam @NotEmpty(message = "Recipient list cannot be empty") List<String> to,
             @RequestParam @NotBlank(message = "Message content cannot be empty") String message,
